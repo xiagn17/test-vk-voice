@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+<script>
+
+    function getURL (method) {
+        return 'https://api.vk.com/method/' + method + '?' + arguments[1] + '&v=5.52&access_token=dba009a84bdd1b701355e5f3808e994de7356e1923eeb8237dda944f37f9c4b872b2914fa094fcd78ded0';
+    }
+
+
+
+    $.ajax({
+        url: getURL("messages.getLongPollServer"),
+        method: 'GET',
+        dataType: 'JSONP',
+        success: (data) => {
+            const {key, server, ts} = data.response;
+            console.log(key);
+            $.ajax({
+                url: 'https://' + server + '?act=a_check&key=' + key + '&ts=' + ts + '&wait=25&mode=2&version=2',
+                method: 'GET',
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
+                dataType: 'JSONP',
+                success: (notife) => {
+                    alert(1);
+                    console.log(notife);
+                }
+            });
+        }
+    });
+
+</script>
+</body>
+</html>
