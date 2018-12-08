@@ -6,7 +6,9 @@
 </head>
 <body>
 
+https://oauth.vk.com/authorize?client_id=6767476&display=page&redirect_uri=&scope=friends,notify,photos,audio,video,stories,pages,status,notes,messages,wall,docs,groups,stats,email,market,notifications&response_type=token&v=5.92&state=123456
 
+access_token=b6a451fd5675e84a75cae57af5672033caced242eed4a1e0b2fa12590fd2b36ba96b5a1c5476d645de759
 <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -33,9 +35,8 @@
                 headers: {
                     'Access-Control-Allow-Origin': '*'
                 },
-                dataType: 'JSONP',
+                dataType: 'JSON',
                 success: (notife) => {
-                    alert(1);
                     console.log(notife);
                 }
             });
