@@ -10,6 +10,16 @@ const port = process.env.PORT || 3000;
 
 const server = app.listen(port, function () {
     console.log('index has been started');
+
+
+    fetch(getURL("messages.getLongPollServer"))
+        .then(data => data.json())
+        .then(data => {
+            const {key, server, ts} = data.response;
+            fetchSync(key, server, ts);
+        })
+        .catch(err => console.log(err));
+
 });
 
 
@@ -112,12 +122,5 @@ function fetchSync (key, server, ts) {
         })
 }
 
-fetch(getURL("messages.getLongPollServer"))
-    .then(data => data.json())
-    .then(data => {
-        const {key, server, ts} = data.response;
-        fetchSync(key, server, ts);
-    })
-    .catch(err => console.log(err));
 
 
